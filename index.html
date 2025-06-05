@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Drag and Drop Web</title>
+  </head>
+  <body>
+    <header>
+      <h1>Simple Website Builder</h1>
+    </header>
+    <main>
+      <div id="toolbar">
+        <div class="draggable" draggable="true" data-type="text">Text</div>
+        <div class="draggable" draggable="true" data-type="image">Image</div>
+        <div class="draggable" draggable="true" data-type="button">Button</div>
+      </div>
+      <div id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="editor">
+        <h3>Edit Element</h3>
+        <form id="property-form" onsubmit="updateProperties(event)">
+          <input type="hidden" id="selected-id" />
+          <label>Text:<input type="text" id="prop-text" /></label>
+          <label>Font Size:<input type="number" id="prop-font-size" /></label>
+          <label>Text Color:<input type="color" id="prop-color" /></label>
+          <label>Background:<input type="color" id="prop-bg" /></label>
+          <label>Image URL:<input type="text" id="prop-src" /></label>
+          <label
+            >Upload Image:
+            <input type="file" id="prop-upload" accept="image/*" />
+          </label>
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

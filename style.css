@@ -1,0 +1,90 @@
+ * {
+     box-sizing: border-box;
+ }
+
+ body {
+     margin: 0;
+     font-family: sans-serif;
+     display: flex;
+     flex-direction: column;
+     height: 100vh;
+ }
+
+ header {
+     background: #4f46e5;
+     color: white;
+     padding: 1rem;
+     text-align: center;
+ }
+
+ main {
+     display: flex;
+     flex: 1;
+     overflow: hidden;
+ }
+
+ #toolbar,
+ #editor {
+     padding: 1rem;
+ }
+
+ #toolbar {
+     background: #f3f4f6;
+     width: 200px;
+     border-right: 1px solid #ccc;
+ }
+
+ #canvas {
+     flex: 1;
+     background: #fff;
+     border: 1px solid #ddd;
+     min-height: 100%;
+     position: relative;
+ }
+
+ .draggable {
+     padding: 0.5rem;
+     background: #e5e7eb;
+     margin-bottom: 0.5rem;
+     cursor: grab;
+     border: 1px solid #ccc;
+ }
+
+ .element {
+     position: absolute;
+     border: 1px dashed transparent;
+ }
+
+ .element.selected {
+     border-color: #2563eb;
+ }
+
+ #editor {
+     width: 250px;
+     background: #f9fafb;
+     border-left: 1px solid #ccc;
+ }
+
+ label {
+     display: block;
+     margin-top: 0.5rem;
+ }
+
+ input,
+ select,
+ textarea {
+     width: 100%;
+     padding: 0.25rem;
+     margin-top: 0.25rem;
+ }
+
+ @media (max-width: 768px) {
+     main {
+         flex-direction: column;
+     }
+
+     #toolbar,
+     #editor {
+         width: 100%;
+     }
+ }
