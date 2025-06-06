@@ -13,6 +13,22 @@ function allowDrop(e) {
 
 function drop(e) {
     e.preventDefault();
+
+    const files = e.dataTransfer.files;
+    if (files.length && files[0].type.startsWith('image/')) {
+        const file = files[0];
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const img = createElement('image');
+            img.src = event.target.result;
+            img.style.left = e.offsetX + 'px';
+            img.style.top = e.offsetY + 'px';
+            document.getElementById('canvas').appendChild(img);
+        };
+        reader.readAsDataURL(file);
+        return;
+    }
+
     const type = e.dataTransfer.getData("type");
     const el = createElement(type);
     el.style.left = e.offsetX + 'px';
@@ -26,6 +42,7 @@ function createElement(type) {
     el.classList.add('element');
     el.id = id;
     el.setAttribute('onclick', 'selectElement(event)');
+    el.setAttribute('tabindex', '0');
     el.style.position = 'absolute';
     el.style.padding = '0.5rem';
 
@@ -73,20 +90,19 @@ function rgbToHex(rgb) {
     return result ? '#' + result.map(x => (+x).toString(16).padStart(2, '0')).join('') : '#ffffff';
 }
 
+document.getElementById('prop-upload').addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (!file || !selectedElement || selectedElement.tagName !== 'IMG') return;
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        selectedElement.src = event.target.result;
+        document.getElementById('prop-src').value = event.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+
 document.getElementById('canvas').addEventListener('click', () => {
     if (selectedElement) selectedElement.classList.remove('selected');
     selectedElement = null;
-
-    document.getElementById('prop-upload').addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (!file || !selectedElement || selectedElement.tagName !== 'IMG') return;
-
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            selectedElement.src = event.target.result;
-            document.getElementById('prop-src').value = event.target.result;
-        };
-        reader.readAsDataURL(file);
-    });
-
 });

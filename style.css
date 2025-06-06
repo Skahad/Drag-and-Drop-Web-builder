@@ -1,90 +1,163 @@
- * {
-     box-sizing: border-box;
- }
+* {
+    box-sizing: border-box;
+}
 
- body {
-     margin: 0;
-     font-family: sans-serif;
-     display: flex;
-     flex-direction: column;
-     height: 100vh;
- }
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f0f2f5;
+}
 
- header {
-     background: #4f46e5;
-     color: white;
-     padding: 1rem;
-     text-align: center;
- }
+header {
+    background: #4f46e5;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
 
- main {
-     display: flex;
-     flex: 1;
-     overflow: hidden;
- }
+main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    flex-direction: row;
+}
 
- #toolbar,
- #editor {
-     padding: 1rem;
- }
+#toolbar,
+#editor {
+    padding: 1rem;
+    flex-shrink: 0;
+}
 
- #toolbar {
-     background: #f3f4f6;
-     width: 200px;
-     border-right: 1px solid #ccc;
- }
+#toolbar {
+    background: #f3f4f6;
+    width: 200px;
+    border-right: 1px solid #ccc;
+}
 
- #canvas {
-     flex: 1;
-     background: #fff;
-     border: 1px solid #ddd;
-     min-height: 100%;
-     position: relative;
- }
+#canvas {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ddd;
+    min-height: 100%;
+    position: relative;
+    overflow: auto;
+    touch-action: manipulation;
+}
 
- .draggable {
-     padding: 0.5rem;
-     background: #e5e7eb;
-     margin-bottom: 0.5rem;
-     cursor: grab;
-     border: 1px solid #ccc;
- }
+.draggable {
+    padding: 0.5rem;
+    background: #e5e7eb;
+    margin-bottom: 0.5rem;
+    cursor: grab;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
- .element {
-     position: absolute;
-     border: 1px dashed transparent;
- }
+.element {
+    position: absolute;
+    border: 1px dashed transparent;
+    word-break: break-word;
+    border-radius: 4px;
+}
 
- .element.selected {
-     border-color: #2563eb;
- }
+.element.selected {
+    border-color: #2563eb;
+}
 
- #editor {
-     width: 250px;
-     background: #f9fafb;
-     border-left: 1px solid #ccc;
- }
+#editor {
+    width: 250px;
+    background: #f9fafb;
+    border-left: 1px solid #ccc;
+}
 
- label {
-     display: block;
-     margin-top: 0.5rem;
- }
+label {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+}
 
- input,
- select,
- textarea {
-     width: 100%;
-     padding: 0.25rem;
-     margin-top: 0.25rem;
- }
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 0.4rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
- @media (max-width: 768px) {
-     main {
-         flex-direction: column;
-     }
+button {
+    margin-top: 1rem;
+    background-color: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
 
-     #toolbar,
-     #editor {
-         width: 100%;
-     }
- }
+button:hover {
+    background-color: #4338ca;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        min-height: 100%;
+    }
+
+    #toolbar,
+    #editor {
+        width: 100%;
+        order: 1;
+    }
+
+    #canvas {
+        order: 0;
+        min-height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .draggable {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    label,
+    input,
+    button {
+        font-size: 0.9rem;
+    }
+
+    input,
+    button {
+        padding: 0.3rem;
+    }
+
+    #editor h3 {
+        font-size: 1rem;
+    }
+}
+
+/* New accessibility enhancements */
+.draggable:focus {
+    outline: 2px solid #2563eb;
+    background: #dbeafe;
+}
+
+.element:focus {
+    outline: 2px solid #2563eb;
+}
+
+#toolbar,
+#editor,
+#canvas {
+    max-width: 100%;
+}

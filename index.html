@@ -11,29 +11,80 @@
       <h1>Simple Website Builder</h1>
     </header>
     <main>
-      <div id="toolbar">
-        <div class="draggable" draggable="true" data-type="text">Text</div>
-        <div class="draggable" draggable="true" data-type="image">Image</div>
-        <div class="draggable" draggable="true" data-type="button">Button</div>
-      </div>
-      <div id="canvas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-      <div id="editor">
+      <nav id="toolbar" aria-label="Element Toolbar">
+        <div
+          class="draggable"
+          draggable="true"
+          data-type="text"
+          role="button"
+          tabindex="0"
+        >
+          Text
+        </div>
+        <div
+          class="draggable"
+          draggable="true"
+          data-type="image"
+          role="button"
+          tabindex="0"
+        >
+          Image
+        </div>
+        <div
+          class="draggable"
+          draggable="true"
+          data-type="button"
+          role="button"
+          tabindex="0"
+        >
+          Button
+        </div>
+      </nav>
+      <section
+        id="canvas"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+        aria-label="Canvas"
+        tabindex="0"
+      ></section>
+      <aside id="editor" aria-label="Element Editor">
         <h3>Edit Element</h3>
         <form id="property-form" onsubmit="updateProperties(event)">
           <input type="hidden" id="selected-id" />
-          <label>Text:<input type="text" id="prop-text" /></label>
-          <label>Font Size:<input type="number" id="prop-font-size" /></label>
-          <label>Text Color:<input type="color" id="prop-color" /></label>
-          <label>Background:<input type="color" id="prop-bg" /></label>
-          <label>Image URL:<input type="text" id="prop-src" /></label>
           <label
-            >Upload Image:
-            <input type="file" id="prop-upload" accept="image/*" />
-          </label>
-
+            >Text:<input type="text" id="prop-text" aria-label="Text"
+          /></label>
+          <label
+            >Font Size:<input
+              type="number"
+              id="prop-font-size"
+              aria-label="Font Size"
+          /></label>
+          <label
+            >Text Color:<input
+              type="color"
+              id="prop-color"
+              aria-label="Text Color"
+          /></label>
+          <label
+            >Background:<input
+              type="color"
+              id="prop-bg"
+              aria-label="Background Color"
+          /></label>
+          <label
+            >Image URL:<input type="text" id="prop-src" aria-label="Image URL"
+          /></label>
+          <label
+            >Upload Image:<input
+              type="file"
+              id="prop-upload"
+              accept="image/*"
+              aria-label="Upload Image"
+          /></label>
           <button type="submit">Update</button>
         </form>
-      </div>
+      </aside>
     </main>
 
     <script src="script.js"></script>
